@@ -8,16 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.AI.FormRecognizer" Version="4.1.0" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\IdentityCard\" />
-    <Folder Include="Features\IdentityCard\Analyze\" />
-    <Folder Include="Features\BankStatement\" />
-    <Folder Include="Features\TaxCertificate\" />
-    <Folder Include="Data\" />
-    <Folder Include="Services\DocumentIntelligence\" />
+    <Folder Include="Features\DocumentAnalysis\BankStatement\" />
+    <Folder Include="Features\DocumentAnalysis\IdentityCard\Back\" />
+    <Folder Include="Features\DocumentAnalysis\TaxCertificate\" />
   </ItemGroup>
 
 </Project>
