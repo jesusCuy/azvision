@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Qi.Vision.WebApi.Features.DocumentAnalysis;
+using Qi.Vision.WebApi.Features.DocumentAnalysis.IdentityCard.Back;
 using Qi.Vision.WebApi.Features.DocumentAnalysis.IdentityCard.Front;
 using Qi.Vision.WebApi.Filters;
 
@@ -37,7 +38,15 @@ namespace Qi.Vision.WebApi.Controllers
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" })]
         public async Task<IActionResult> AnalyzeIdentityCardBackAsync([FromQuery] TrainningModelType modelType, IFormFile file)
         {
-            throw new NotImplementedException("Not implemented yet...");
+            try
+            {
+                var result = await _mediator.Send(new AnalyzeIdCardBackCommand(modelType, file));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
     }
 

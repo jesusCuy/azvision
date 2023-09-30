@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Qi.Vision.WebApi.Features.DocumentAnalysis;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -11,7 +14,10 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers().AddJsonOptions(options =>
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));         
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+        builder.Services.Configure<DocAnalysisOptions>(
+        builder.Configuration.GetSection(DocAnalysisOptions.DocAnalysis));
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c => 
@@ -28,6 +34,9 @@ internal class Program
         {
             options.MultipartBodyLengthLimit = 80 * 1024 * 1024; // Max file size 80MB due AZ limits
         });
+
+        builder.Services.AddScoped<DocSaver>();
+        builder.Services.AddScoped<DocAnalyzer>();
 
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

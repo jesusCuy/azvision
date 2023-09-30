@@ -2,9 +2,9 @@
 
 namespace Qi.Vision.WebApi.Features.DocumentAnalysis.IdentityCard.Front
 {
-    public class IdentityCardAnalysisResult : AnalyzedDocumentMapper
+    public class IdentityCardFrontAnalysisResult : AnalyzedDocumentMapper
     {
-        public IdentityCardAnalysisResult(AnalyzeResult result) : base(result)
+        public IdentityCardFrontAnalysisResult(AnalyzeResult result) : base(result)
         {
         }
 

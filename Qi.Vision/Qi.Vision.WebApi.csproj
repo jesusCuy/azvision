@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Features\DocumentAnalysis\BankStatement\" />
-    <Folder Include="Features\DocumentAnalysis\IdentityCard\Back\" />
     <Folder Include="Features\DocumentAnalysis\TaxCertificate\" />
   </ItemGroup>
 
